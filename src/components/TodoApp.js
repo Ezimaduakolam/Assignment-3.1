@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "../styles/TodoApp.css";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
@@ -74,26 +75,30 @@ const TodoApp = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}style={{ textDecoration: todo.completed ? "line-through" : "none"}}>
-            {todo.todo}
-            <button onClick={() => toggleCompletion(todo.id, todo.completed)}>
-              {todo.completed ? "✅" : "❌"}
-            </button>
-
+            
             {editingId === todo.id ? (
-              <>
+              <div style={{display: "flex", justifySelf: "right", paddingRight: "30px"}}>
                 <input 
                   type="text" 
                   value={editingText} 
                   onChange={(e) => setEditingText(e.target.value)} 
                 />
                 <button onClick={() => updateTodo(todo.id)}>Save</button>
-              </>
-            ) : (
-              <>
-                <button onClick={() => { setEditingId(todo.id); setEditingText(todo.todo); }}>Edit</button>
-                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-              </>
-            )}
+              </div>
+             ) : (
+              <div id="todo-display">
+                <div id="todo-item">
+                  {todo.todo}
+                </div>
+                <div id="todo-button">
+                  <button onClick={() => toggleCompletion(todo.id, todo.completed)}>
+                    {todo.completed ? "✅" : "❌"}
+                  </button>
+                  <button onClick={() => { setEditingId(todo.id); setEditingText(todo.todo); }}>Edit</button>
+                  <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                </div>
+              </div>
+             )}
           </li>
         ))}
       </ul>

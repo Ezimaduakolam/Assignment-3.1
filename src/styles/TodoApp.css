@@ -1,0 +1,16 @@
+#todo-display{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+  }
+#todo-item{
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+  }
+#todo-button{
+    display: flex;
+    gap: 3px;
+    justify-content: end;
+    padding-right: 30px;
+  }
